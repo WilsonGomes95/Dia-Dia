@@ -1,4 +1,5 @@
 package dia.dia.Entities;
+import dia.dia.Exceptions.BusinessException;
 
 public class Account {
     private String number;
@@ -33,7 +34,7 @@ public class Account {
 
     public void deposit(double deposit){
         if (deposit <= 0){
-            throw new IllegalArgumentException("O valor do depósito deve ser maior que zero.");
+            throw new BusinessException("O valor do depósito deve ser maior que zero.");
         }
         this.balance += deposit;
 
@@ -41,10 +42,10 @@ public class Account {
 
     public void withdraw(double withdraw){
         if (withdraw > this.getBalance()){
-            throw new IllegalArgumentException("Valor de saque maior que o saldo.");
+            throw new BusinessException("Valor de saque maior que o saldo.");
         }
         if (withdraw <= 0){
-            throw new IllegalArgumentException("O valor do saque deve ser maior que zero.");
+            throw new BusinessException("O valor do saque deve ser maior que zero.");
         }
 
         this.balance -= withdraw;
